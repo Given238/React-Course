@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+      
+    </script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+    
+      
+      function ProductName({name,imageSrc}){
+        return(
+            <>  
+                <div>
+                  <img width="50px"src={imageSrc}/>  
+                </div>
+                <p>
+                    Product: {name}    
+                </p>
+            </>
+        )
+      }
+
+      function ProductPrice({price}){
+        return(
+            <>
+                <p>
+                    Price: ${price}
+                </p>
+            </>
+        )}
+
+      function DiscountPrice({dcprice}) {
+        return(
+            <>
+                <p>
+                  Discount price: ${dcprice}  
+                </p>
+            </>
+        )
+
+      }
+
+      function CartButton() {
+        return(
+            <>
+                <button>
+                    Add to Cart
+                </button>
+            </>
+        )
+      }
+
+
+
+      function ProductDetails({name,price,dcprice,imageSrc}){
+        
+
+
+        return(
+            <>
+
+                <ProductName name={name} imageSrc={imageSrc}/>
+                {dcprice ? (
+                  <>
+                    <del>
+                      <ProductPrice price={price}/>
+                    </del>
+                    <DiscountPrice dcprice={dcprice}/>
+                  </>)  : (
+                    <>
+                      <ProductPrice price={price}/>
+                    </> 
+                  )
+              }
+                <CartButton/>
+                
+            </>
+        )
+      }
+        
+      function App() {
+        return(
+            <>
+              <ProductDetails 
+              name="Cotton Socks" 
+              price="10.90" dcprice="5.45" 
+              imageSrc="cotton-socks.png"/>
+              <ProductDetails 
+              name="Tennis balls" 
+              price="6.00" 
+              imageSrc="tennis-balls.png"/>
+              <ProductDetails 
+              name="Plain T-Shirt" 
+              price="7.99" 
+              imageSrc="plain-t-shirt.png"/>
+            </>
+        )
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
