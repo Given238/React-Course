@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+      
+
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const button = 
+      <button>hello</button> 
+
+
+      function TypeBox({inputText,setInputText,resetText,exampleText}) {
+
+        
+
+
+        return(
+          <>
+            <input 
+            placeholder="Type a name here"
+            onChange={(e) => setInputText(e.target.value)}
+            value={inputText}
+            size="25"
+            />
+            <button onClick={resetText}>Reset</button>
+            <button onClick={exampleText}>Example</button>
+            <p>Hello {inputText}</p>
+            
+          </>
+        )
+      }
+
+      function App() {
+
+        const [inputText,setInputText] = React.useState('')
+
+        function resetText(){
+          setInputText('')
+        }
+
+        function exampleText(){
+          setInputText('Jovan')
+        }
+
+        return(
+          <>
+            <TypeBox
+            inputText={inputText}
+            setInputText={setInputText} 
+            resetText={resetText}
+            exampleText={exampleText}/>
+          </>
+
+        )
+        
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
